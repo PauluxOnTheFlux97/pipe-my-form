@@ -10,6 +10,7 @@ final class FlowRepository
     public const PUBLISHED_META = '_pmf_published_snapshot';
     public const VERSION_META = '_pmf_published_version';
     public const DRAFT_REVISION_META = '_pmf_draft_revision';
+    public const PUBLISHED_DRAFT_REVISION_META = '_pmf_published_draft_revision';
 
     private static bool $publishing = false;
 
@@ -102,6 +103,9 @@ final class FlowRepository
         if ($this->draftRevision($id) !== $expectedRevision) {
             return new \WP_Error('pmf_conflict', 'Draft changed; reload before publishing.', ['status' => 409]);
         }
+        if ((int) get_post_meta($id, self::PUBLISHED_DRAFT_REVISION_META, true) === $expectedRevision) {
+            return new \WP_Error('pmf_already_published', 'This draft revision is already published.', ['status' => 409]);
+        }
         $definition = $this->draft($id);
         if ($definition === null) {
             return new \WP_Error('pmf_missing_draft', 'Save a valid JSON draft first.', ['status' => 400]);
@@ -135,6 +139,7 @@ final class FlowRepository
         }
         update_post_meta($id, self::PUBLISHED_META, wp_slash($snapshot));
         update_post_meta($id, self::VERSION_META, $version);
+        update_post_meta($id, self::PUBLISHED_DRAFT_REVISION_META, $expectedRevision);
         return $version;
     }
 
