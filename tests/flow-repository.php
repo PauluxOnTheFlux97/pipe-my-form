@@ -61,6 +61,7 @@ check($repo->saveDraft(1, json_encode($flow), 0) === 1, 'Save draft revision');
 check(is_wp_error($repo->saveDraft(1, json_encode($flow), 0)), 'Stale revision rejected');
 check($repo->publish(1, 1) === 1, 'Publish first snapshot');
 check($repo->published(1)['nodes'][0]['label'] === 'Welcome', 'Public snapshot exists');
+check(is_wp_error($repo->publish(1, 1)), 'Unchanged draft cannot create another published version');
 check($repo->guardPublication(['post_type' => 'pmf_flow', 'post_status' => 'publish'], ['ID' => 1])['post_status'] === 'publish', 'Existing published post status remains');
 
 $flow['nodes'][0]['label'] = 'Updated unpublished draft';
