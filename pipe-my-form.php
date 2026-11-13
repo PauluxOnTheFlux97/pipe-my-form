@@ -14,6 +14,16 @@
 if (!defined('ABSPATH')) { exit; }
 define('PMF_VERSION', '0.1.0-dev');
 define('PMF_PLUGIN_FILE', __FILE__);
-add_action('plugins_loaded', static function (): void {
-    // Bootstrap only: functional features will be introduced through reviewed PRs.
+spl_autoload_register(static function (string $class): void {
+    $prefix = 'PaulMaudry\\PipeMyForm\\';
+    if (!str_starts_with($class, $prefix)) { return; }
+    $relative = substr($class, strlen($prefix));
+    $path = __DIR__ . '/src/' . str_replace('\\', '/', $relative) . '.php';
+    if (is_file($path)) { require_once $path; }
+});
+add_action('init', static function (): void {
+    (new \PaulMaudry\PipeMyForm\Flows\FlowRepository())->register();
+});
+add_action('rest_api_init', static function (): void {
+    (new \PaulMaudry\PipeMyForm\Api\FlowController())->register();
 });
