@@ -1,0 +1,11 @@
+name: Validate bootstrap
+on:
+  push:
+  pull_request:
+jobs:
+  php-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check plugin PHP syntax
+        run: php -l pipe-my-form.php
