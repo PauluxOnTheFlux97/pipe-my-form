@@ -11,7 +11,7 @@ final class FlowRepository
     public const VERSION_META = '_pmf_published_version';
     public const DRAFT_REVISION_META = '_pmf_draft_revision';
 
-    private bool $publishing = false;
+    private static bool $publishing = false;
 
     public function register(): void
     {
@@ -35,7 +35,7 @@ final class FlowRepository
     {
         if (($data['post_type'] ?? '') !== self::POST_TYPE
             || ($data['post_status'] ?? '') !== 'publish'
-            || $this->publishing) {
+            || self::$publishing) {
             return $data;
         }
         $existing = isset($postarr['ID']) ? get_post((int) $postarr['ID']) : null;
@@ -122,11 +122,11 @@ final class FlowRepository
         }
 
         if ($post->post_status !== 'publish') {
-            $this->publishing = true;
+            self::$publishing = true;
             try {
                 $result = wp_update_post(['ID' => $id, 'post_status' => 'publish'], true);
             } finally {
-                $this->publishing = false;
+                self::$publishing = false;
             }
             if (is_wp_error($result) || !$result) {
                 delete_post_meta($id, '_pmf_snapshot_v' . $version);
