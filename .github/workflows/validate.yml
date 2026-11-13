@@ -1,11 +1,13 @@
-name: Validate bootstrap
+name: Validate flow engine
 on:
   push:
   pull_request:
 jobs:
-  php-syntax:
+  php:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check plugin PHP syntax
-        run: php -l pipe-my-form.php
+      - name: Check PHP syntax
+        run: find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: Run flow engine smoke tests
+        run: php -d zend.assertions=1 -d assert.exception=1 tests/flow-engine.php

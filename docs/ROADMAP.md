@@ -1,55 +1,35 @@
 # Roadmap
 
-The schedule is a target, not a guarantee. Prioritize a small, secure and usable MVP. All milestones require tests, documentation and review.
+The schedule is a target, not a guarantee. All milestones require tests, documentation and review.
 
-## M0 — Project foundation (days 1–3)
-- [ ] Plugin bootstrap and WordPress compatibility checks
-- [ ] Composer/npm/Vite tooling and build scripts
-- [ ] CI for lint, static analysis and automated tests
-- [ ] GitHub issue templates, release workflow and ZIP packaging
-- [ ] Architecture decision records and contribution standards
+## M0 — Project foundation
+- [x] Plugin bootstrap and repository layout
+- [x] Documentation and initial PHP syntax CI
+- [ ] Composer/npm/Vite tooling and reproducible release ZIP
+- [ ] WordPress integration test environment and full CI
 
-**Exit:** clean install/activation, repeatable build and green CI.
+## M1 — Flow engine
+- [x] Initial versioned flow schema, validation and cycle/reachability detection
+- [x] Pure PHP conditional navigation and answer validation
+- [x] Private flow post type and read-only published snapshot REST endpoint
+- [ ] Capability-checked draft editor and REST write API
+- [ ] Explicit versioned publication, revisions and immutable history
+- [ ] Full integration/unit test coverage and WordPress compatibility verification
 
-## M1 — Flow engine (days 4–7)
-- [ ] Versioned flow schema and validation
-- [ ] Question types and conditional navigation
-- [ ] Draft/publish/duplicate flows with basic admin editor
-- [ ] Progress, back navigation and completion state
-- [ ] Flow engine tests including malformed/cyclic graphs
-
-**Exit:** editable and published multi-step flow works end to end.
-
-## M2 — Public experience (days 8–11)
+## M2 — Public UX
 - [ ] Floating launcher and modal
-- [ ] Embedded shortcode/block integration
-- [ ] Responsive and accessible components
-- [ ] Global design tokens and display options
-- [ ] Session continuation and reduced-motion support
+- [ ] Shortcode/block integration
+- [ ] Responsive accessible components and design tokens
+- [ ] Session persistence and reduced-motion support
 
-**Exit:** usable on mobile and desktop with keyboard navigation.
+## M3 — Leads and delivery
+- [ ] Submission persistence, migrations, admin listing and CSV
+- [ ] Email notifications and signed webhooks with retries
+- [ ] Rate limits, anti-spam, privacy export/erase and retention
 
-## M3 — Leads and delivery (days 12–15)
-- [ ] Submission tables, migrations and admin listing
-- [ ] Email notifications and CSV export
-- [ ] Signed webhooks with idempotency and retries
-- [ ] Rate limiting, spam prevention and permission checks
-- [ ] Privacy policy text, export/erase and retention controls
-
-**Exit:** reliable lead capture and secure delivery under failure conditions.
-
-## M4 — Release 1.0 (days 16–20)
-- [ ] Integration and browser tests
-- [ ] Security/accessibility/performance audit
-- [ ] WordPress compatibility matrix and staging verification
-- [ ] Installation/upgrade/uninstall/rollback documentation
-- [ ] Tagged release and downloadable ZIP
-
-**Exit:** release checklist passes; deploy to first production site.
+## M4 — Release 1.0
+- [ ] E2E, security, accessibility and performance checks
+- [ ] Staging, rollback, packaging and tagged release
 
 ## Post-MVP
-- **1.1:** optional Odoo Community adapter, field mapping and synchronization log.
-- **1.2:** AI Q&A, knowledge sources and human handoff.
-- **1.3:** templates, analytics, import/export and contextual triggers.
-
-**Out of scope:** WhatsApp.
+1.1 optional Odoo Community integration; 1.2 AI and human handoff; 1.3 templates and analytics. WhatsApp is out of scope.
