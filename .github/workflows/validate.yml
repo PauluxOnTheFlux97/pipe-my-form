@@ -10,4 +10,6 @@ jobs:
       - name: Check PHP syntax
         run: find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
       - name: Run flow engine smoke tests
-        run: php -d zend.assertions=1 -d assert.exception=1 tests/flow-engine.php
+        run: |
+          php -d zend.assertions=1 -d assert.exception=1 tests/flow-engine.php
+          php -d zend.assertions=1 -d assert.exception=1 tests/flow-repository.php

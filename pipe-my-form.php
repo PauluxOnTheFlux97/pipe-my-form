@@ -24,6 +24,9 @@ spl_autoload_register(static function (string $class): void {
 add_action('init', static function (): void {
     (new \PaulMaudry\PipeMyForm\Flows\FlowRepository())->register();
 });
+add_action('admin_init', static function (): void {
+    (new \PaulMaudry\PipeMyForm\Admin\FlowEditor())->register();
+});
 add_action('rest_api_init', static function (): void {
     (new \PaulMaudry\PipeMyForm\Api\FlowController())->register();
 });
