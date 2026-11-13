@@ -26,6 +26,7 @@ add_action('init', static function (): void {
 });
 add_action('admin_init', static function (): void {
     (new \PaulMaudry\PipeMyForm\Admin\FlowEditor())->register();
+    (new \PaulMaudry\PipeMyForm\Admin\StructuredFlowEditor())->register();
 });
 add_action('rest_api_init', static function (): void {
     (new \PaulMaudry\PipeMyForm\Api\FlowController())->register();
