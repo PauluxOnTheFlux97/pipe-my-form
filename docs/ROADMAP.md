@@ -12,9 +12,9 @@ The schedule is a target, not a guarantee. All milestones require tests, documen
 - [x] Initial versioned flow schema, validation and cycle/reachability detection (PR #9)
 - [x] Pure PHP conditional navigation and answer validation (PR #9)
 - [x] Private flow post type and read-only published snapshot REST endpoint (PR #9)
-- [ ] **PR #10 pending:** JSON-based WordPress admin editing, capability-checked draft REST API and explicit validated publishing
-- [ ] **PR #10 pending:** Immutable version snapshots, optimistic draft revisions and lifecycle smoke tests
-- [ ] User-friendly question editor (structured form; no visual canvas required for MVP)
+- [x] JSON-based WordPress admin editing, capability-checked draft REST API and explicit validated publishing (PR #10)
+- [x] Immutable version snapshots, optimistic draft revisions and lifecycle smoke tests (PR #10)
+- [ ] Structured question editor (addition, removal, order, choices, conditional connections) — proposed in PR #11; pending review, CI and merge
 - [ ] Flow revisions/history UI and draft duplication
 - [ ] WordPress integration tests, audit of publish permissions and compatibility verification
 - [ ] Schema-level cross-field checks, type-specific validation, comprehensive edge-case tests
